@@ -1,5 +1,7 @@
 # hash_assertions
 
+[![Build Status](https://travis-ci.org/tomekw/hash_assertions.png)](https://travis-ci.org/tomekw/hash_assertions)
+
 Hash assertions: assert required keys, assert keys with values
 
 ## Installation
