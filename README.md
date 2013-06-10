@@ -59,16 +59,17 @@ require "hash_assertions/assert_keys_with_values"
 # Raises nothing
 { foo: "bar", baz: "qux" }.assert_keys_with_values(:foo, :baz)
 
-# Raises ArgumentError, "Blank value for key: baz"
-{ foo: "bar", baz: nil }.assert_keys_with_values(:foo, :baz)
-
-# Raises ArgumentError, "Blank value for key: baz"
+# Raises nothing
+# (blank string or empty array is treated as valid value)
 { foo: "bar", baz: "" }.assert_keys_with_values(:foo, :baz)
 
-# Raises ArgumentError, "Blank value for key: baz"
+# Raises ArgumentError, "No value for key: baz"
+{ foo: "bar", baz: nil }.assert_keys_with_values(:foo, :baz)
+
+# Raises ArgumentError, "No value for key: baz"
 { foo: "bar", baz: "qux" }.assert_keys_with_values(:foo, "baz")
 
-# Raises ArgumentError, "Blank value for key: [:foo, :baz]"
+# Raises ArgumentError, "No value for key: [:foo, :baz]"
 # (assert_keys_with_values doesn't flatten arguments!)
 { foo: "bar", baz: "qux" }.assert_keys_with_values([:foo, :baz])
 ```

@@ -18,17 +18,15 @@ describe "assert_keys_with_values" do
     it "fails" do
       expect do
         hash.assert_keys_with_values(*present_keys?)
-      end.to raise_error(ArgumentError, "Blank value for key: bar")
+      end.to raise_error(ArgumentError, "No value for key: bar")
     end
   end
 
   context "when some keys with empty values" do
     let(:present_keys?) { [:baz, :qux] }
 
-    it "fails" do
-      expect do
-        hash.assert_keys_with_values(*present_keys?)
-      end.to raise_error(ArgumentError, "Blank value for key: qux")
+    it "passes" do
+      expect { hash.assert_keys_with_values(*present_keys?) }.to_not raise_error
     end
   end
 
@@ -38,7 +36,7 @@ describe "assert_keys_with_values" do
     it "fails" do
       expect do
         hash.assert_keys_with_values(*present_keys?)
-      end.to raise_error(ArgumentError, "Blank value for key: foo")
+      end.to raise_error(ArgumentError, "No value for key: foo")
     end
   end
 
@@ -48,7 +46,7 @@ describe "assert_keys_with_values" do
     it "fails" do
       expect do
         hash.assert_keys_with_values(present_keys?)
-      end.to raise_error(ArgumentError, "Blank value for key: [:baz, :bar]")
+      end.to raise_error(ArgumentError, "No value for key: [:baz, :bar]")
     end
   end
 end
